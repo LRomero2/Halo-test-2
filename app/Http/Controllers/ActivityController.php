@@ -71,3 +71,35 @@ class ActivityController extends Controller
 	}
 
 }
+
+public function __clone(): void 
+{
+	$activity = Activity::getOne($activityId);
+	$this->id = activityId('Activity');
+
+	return view('activity.clone', compact('activity'));
+}
+
+public function copy(Request $request, $activityId) {
+
+	$activity = Activity::getOne($activityId);
+
+	$request->validate([
+		'task_code' => 'required',
+		'activity_date' => 'required',
+		'team_code' => 'required',
+		'contract_code' => 'required',
+		'outputs.*' => 'required|numeric',
+	]);
+
+	$activity->task_code = $request->task_code;
+	$activity->activity_date = $request->activity_date;
+	$activity->team_code = $request->team_code;
+	$activity->contract_code = $request->contract_code;
+	$activity->outputs = $request->outputs;
+	$activity->saveOne();
+
+	return redirect()->route('activity.index');
+}
+
+}

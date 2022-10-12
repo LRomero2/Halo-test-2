@@ -65,6 +65,14 @@
 									<a class="dropdown-item" href="{{ route('activity.edit', [$activity['activity_id']]) }}">Edit</a>
 								</div>
 							</div>
+							<div class="btn-group float-right" role="group">
+								<button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Open menu">
+									<i class="fa fa-bars"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="{{ route('activity.clone', [$activity['activity_id']]) }}">Clone Activity</a>
+								</div>
+							</div>
 						</td>
 					</tr>
 					<tr class="panel hide">
